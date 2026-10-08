@@ -1,6 +1,7 @@
-// ===== Validation du formulaire d'inscription (Fonctionnalité C) =====
+// ===== Formulaire d'inscription (Fonctionnalité C) : validation et soumission simulée =====
 
 const inscriptionForm = document.getElementById('inscription-form');
+const inscriptionConfirmation = document.getElementById('inscription-confirmation');
 
 // Un seul « @ », pas d'espace, un domaine avec au moins un point.
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -47,11 +48,43 @@ function validateForm() {
     return invalidFields.length === 0;
 }
 
+// Efface les erreurs affichées (utilisé après une inscription réussie).
+function clearErrors() {
+    fieldNames.forEach((fieldName) => {
+        document.getElementById(`${fieldName}-error`).textContent = '';
+        inscriptionForm.elements[fieldName].removeAttribute('aria-invalid');
+    });
+}
+
 inscriptionForm.addEventListener('submit', (event) => {
+    // Pas de rechargement de la page : il n'y a ni backend ni stockage.
+    event.preventDefault();
+
     // La soumission d'un formulaire invalide est bloquée.
     if (!validateForm()) {
-        event.preventDefault();
+        return;
     }
+
+    // Les valeurs ne servent qu'à construire la confirmation : elles ne sont
+    // ni envoyées (pas de fetch/XHR) ni conservées (pas de localStorage/cookie).
+    const { prenom, nom, email } = Object.fromEntries(new FormData(inscriptionForm));
+    const eventLabel = inscriptionForm.elements.evenement.selectedOptions[0].textContent;
+
+    inscriptionForm.reset();
+    clearErrors();
+
+    // textContent (et non innerHTML) : les valeurs saisies ne sont jamais interprétées comme du HTML.
+    inscriptionConfirmation.textContent =
+        `Merci ${prenom.trim()} ${nom.trim()} ! Votre inscription à « ${eventLabel} » est confirmée ` +
+        `(simulation, confirmation attendue à ${email.trim()}). ` +
+        'Aucune donnée n\'a été transmise ni enregistrée.';
+    inscriptionConfirmation.hidden = false;
+    inscriptionConfirmation.focus();
+});
+
+// Dès que l'on modifie à nouveau le formulaire, l'ancienne confirmation disparaît.
+inscriptionForm.addEventListener('input', () => {
+    inscriptionConfirmation.hidden = true;
 });
 
 // Une fois un champ corrigé, son erreur disparaît sans attendre une nouvelle soumission.
