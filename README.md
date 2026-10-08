@@ -47,3 +47,21 @@ Affichage sur ordinateur :
 Affichage sur mobile :
 
 ![Formulaire d'inscription sur mobile](docs/images/inscriptionMobile.png)
+
+## Questions de synthèse
+
+### 7. Comment GitHub Projects et les Issues facilitent-ils organisation et traçabilité ?
+
+*Réponse de @TomLeDev (Étudiant 3)*
+
+Les Issues servent à découper le projet en tâches claires : chacune a une description, des critères pour savoir quand elle est terminée, un responsable et un jalon (milestone) qui la rattache à une fonctionnalité. Chacun sait donc ce qu'il a à faire et comment vérifier que c'est fait. GitHub Projects donne la vue d'ensemble : le Kanban montre l'avancement de chaque tâche et la Roadmap l'ordre prévu et les dépendances.
+
+Pour la traçabilité, on relie tout : le numéro de l'issue dans les messages de commit (`(#3)`), puis `Closes #3` dans la Pull Request. On peut ainsi partir d'un changement et retrouver la tâche qui l'a demandé et la personne qui en était responsable. À noter : nos PR visent `develop` et pas `main`, donc GitHub ne ferme pas les issues tout seul à la fusion (il ne le fait que sur la branche par défaut). Il faut les fermer à la main ou les citer dans la PR de release vers `main`.
+
+### 8. Comment retrouver l'origine d'une modification dans l'historique GitHub ?
+
+*Réponse de @TomLeDev (Étudiant 3)*
+
+Sur GitHub, le bouton **Blame** d'un fichier affiche pour chaque ligne le dernier commit qui l'a modifiée et son auteur. En cliquant sur le commit, on voit son message (qui contient le numéro de l'issue) et la Pull Request associée, avec la discussion et les revues : on comprend qui a changé quoi, quand et pourquoi. Le bouton **History** d'un fichier permet de suivre toutes ses modifications dans le temps.
+
+En ligne de commande, `git log` (avec `--oneline --graph` pour voir les branches) donne l'historique, `git log -- fichier` celui d'un seul fichier, `git show <sha>` le détail d'un commit et `git blame fichier` le même résultat que sur GitHub. Les tags de version (comme `v1.0`) indiquent dans quelle version une modification est arrivée, et `git bisect` aide à trouver le commit qui a introduit un bug.
