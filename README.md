@@ -50,6 +50,54 @@ Affichage sur mobile :
 
 ## Questions de synthèse
 
+### 1. Quel est l'intérêt de séparer développements en cours et versions stables ?
+
+*Réponse de @ISeevenI (Étudiant 1)*
+
+Avec Git Flow, `main` ne contient que des versions stables, publiées et identifiées par un tag (`v1.0`…), tandis que `develop` accueille le travail en cours, intégré au fil des Pull Requests depuis les branches `feature/*`. Une fonctionnalité inachevée ou un bug introduit pendant le développement ne touche donc jamais la version en production.
+
+Cette séparation permet aussi de livrer à un moment choisi, quand le contenu de `develop` a été vérifié, et de corriger rapidement la production (hotfix depuis `main`) sans embarquer des développements non validés.
+
+### 2. Pourquoi imposer une revue de code avant intégration ?
+
+*Réponse de @ISeevenI (Étudiant 1)*
+
+La revue fait relire chaque changement par un autre membre avant qu'il n'arrive sur `develop` ou `main` : elle détecte les erreurs, les oublis et les incohérences avec le reste du site (par exemple un `id` renommé qui casserait le menu, ou des intitulés d'événements différents entre le catalogue et le formulaire).
+
+Elle garde aussi une trace des discussions et des décisions dans la Pull Request, et fait circuler la connaissance du code : chacun sait ce que les autres ont modifié. C'est pour ça que, dans notre dépôt, toute intégration passe par une Pull Request et que `main` exige deux approbations avant une fusion.
+
+### 3. Quelles situations provoquent un conflit Git et pourquoi sa résolution n'est-elle pas toujours automatique ?
+
+*Réponse de @ISeevenI (Étudiant 1)*
+
+Un conflit apparaît quand deux branches modifient les mêmes lignes d'un fichier, ou quand l'une modifie un fichier que l'autre a supprimé ou renommé, puis qu'on les fusionne (merge, rebase, cherry-pick, pull). C'est arrivé dans notre projet avec `index.html` : deux branches avaient réécrit la même section à partir de versions différentes.
+
+Git sait fusionner seul des modifications sur des lignes différentes, mais quand les mêmes lignes changent des deux côtés, il ne peut pas savoir laquelle garder, ni s'il faut combiner les deux. Ce choix dépend du sens du code et de l'intention de chaque développeur : c'est à un humain de le faire, puis de vérifier que le résultat fonctionne.
+
+### 4. Quelle différence entre correction classique et correction urgente de production ?
+
+*Réponse de @Mar262m (Étudiant 2)*
+
+Une correction classique (`bugfix/*`) traite une anomalie trouvée dans la version en cours de développement : elle part de `develop`, y revient par Pull Request et sera livrée avec la prochaine release, comme une fonctionnalité.
+
+Une correction urgente (`hotfix/*`) traite un bug déjà présent en production : elle part directement de `main`, pour ne contenir que la correction et aucun développement non validé. Elle est fusionnée dans `main`, publiée sous un nouveau tag de correctif (par exemple `v1.0.1`), puis fusionnée aussi dans `develop`.
+
+### 5. Pourquoi répercuter une correction de production dans les développements en cours ?
+
+*Réponse de @Mar262m (Étudiant 2)*
+
+Un hotfix part de `main` : la correction n'existe donc pas encore dans `develop`. Si on ne la fusionne pas aussi dans `develop` (ou dans la branche `release/*` en cours), la prochaine version publiée depuis `develop` ramènera le bug en production.
+
+La répercuter tout de suite garantit que la correction est présente dans toutes les versions futures. Cela évite aussi un conflit plus difficile à résoudre plus tard, si le même code a continué d'évoluer entre-temps.
+
+### 6. Quel est le rôle d'une branche de release ?
+
+*Réponse de @Mar262m (Étudiant 2)*
+
+Une branche `release/*` part de `develop` quand les fonctionnalités prévues pour une version sont terminées. Elle sert à préparer la livraison : vérifications, petites corrections, documentation et numéro de version, sans ajouter de nouvelle fonctionnalité. Pendant ce temps, l'équipe peut continuer à développer sur `develop`.
+
+Une fois prête, elle est fusionnée dans `main` et taguée (par exemple `v1.0`), puis fusionnée dans `develop` pour que les corrections faites pendant la préparation y soient aussi présentes.
+
 ### 7. Comment GitHub Projects et les Issues facilitent-ils organisation et traçabilité ?
 
 *Réponse de @TomLeDev (Étudiant 3)*
