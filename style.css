@@ -93,9 +93,12 @@ a {
     min-height: 44px; /* zone cliquable confortable au doigt */
     padding: 10px 16px;
     border-radius: 999px;
-    font-weight: 500;
-    font-size: clamp(0.9rem, 2.5vw, 0.95rem);
-    color: var(--couleur-texte-doux);
+    /* Amélioration A : graisse, espacement et couleur du texte */
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--couleur-texte);
+    /* Amélioration B : taille adaptative, plafonnée à la taille 1rem voulue par A */
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
     transition: color 0.2s, background 0.2s;
 }
 
