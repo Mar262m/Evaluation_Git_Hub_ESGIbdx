@@ -1,0 +1,68 @@
+/* ===== Formulaire d'inscription (Fonctionnalité C) =====
+   Fichier dédié à la section #inscription : il complète style.css
+   (qui fournit déjà .container, .section et le reset de base). */
+
+.inscription-intro {
+    margin: 8px 0 24px;
+}
+
+.inscription-form {
+    max-width: 560px;
+}
+
+/* ===== Champs ===== */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.form-group input {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #767676;
+    border-radius: 6px;
+    background: #fff;
+    /* 16px minimum : évite le zoom automatique sur iOS lors du focus */
+    font: inherit;
+    font-size: 1rem;
+}
+
+.form-group input:focus-visible {
+    outline: 3px solid #1a73e8;
+    outline-offset: 1px;
+}
+
+/* ===== Bouton ===== */
+.form-submit {
+    width: 100%;
+    padding: 14px 24px;
+    border: 0;
+    border-radius: 6px;
+    background: #1a73e8;
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.form-submit:hover {
+    background: #1558b0;
+}
+
+.form-submit:focus-visible {
+    outline: 3px solid #1a73e8;
+    outline-offset: 2px;
+}
+
+/* ===== Écrans larges : bouton à sa taille naturelle ===== */
+@media (min-width: 600px) {
+    .form-submit {
+        width: auto;
+    }
+}

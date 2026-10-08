@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Horizon — Association étudiante</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="inscription.css">
 </head>
 <body>
 
@@ -43,7 +44,31 @@
         <section id="inscription" class="section">
             <div class="container">
                 <h2>Inscrivez-vous à un événement</h2>
-                <!-- Le formulaire d'inscription sera ajouté ici -->
+                <p class="inscription-intro">
+                    Renseignez vos coordonnées pour vous inscrire.
+                    Les champs marqués d'une étoile (*) sont obligatoires.
+                </p>
+
+                <form id="inscription-form" class="inscription-form" novalidate>
+
+                    <div class="form-group">
+                        <label for="nom">Nom *</label>
+                        <input type="text" id="nom" name="nom" autocomplete="family-name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prenom">Prénom *</label>
+                        <input type="text" id="prenom" name="prenom" autocomplete="given-name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Adresse email *</label>
+                        <input type="email" id="email" name="email" autocomplete="email" required>
+                    </div>
+
+                    <button type="submit" class="form-submit">S'inscrire</button>
+
+                </form>
             </div>
         </section>
 
