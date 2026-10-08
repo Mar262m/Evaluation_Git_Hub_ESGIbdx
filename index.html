@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Horizon — Association étudiante</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="inscription.css">
 </head>
@@ -12,7 +15,17 @@
     <!-- ===== En-tête et navigation ===== -->
     <header class="header">
         <div class="container header-inner">
-            <a href="#accueil" class="logo">Horizon</a>
+            <a href="#accueil" class="logo">
+                <span class="logo-icon">H</span>
+                <span class="logo-text">Horizon</span>
+            </a>
+
+            <nav class="nav">
+                <a href="#accueil">Accueil</a>
+                <a href="#a-propos">À propos</a>
+                <a href="#evenements">Événements</a>
+                <a href="#inscription" class="nav-cta">Inscription</a>
+            </nav>
         </div>
     </header>
 
@@ -20,21 +33,70 @@
 
         <!-- ===== Accueil ===== -->
         <section id="accueil" class="hero">
-            <div class="container">
-                <h1>Horizon — Association étudiante</h1>
+            <div class="container hero-inner">
+                <p class="tag">Association étudiante</p>
+                <h1>Vivez votre vie étudiante <span>autrement</span>.</h1>
+                <p class="hero-text">
+                    Soirées, sorties, tournois et ateliers : Horizon rassemble les étudiants
+                    autour d'événements pensés pour se rencontrer, apprendre et partager.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#evenements" class="btn btn-primary">Voir les événements</a>
+                    <a href="#a-propos" class="btn btn-secondary">Découvrir l'asso</a>
+                </div>
             </div>
         </section>
 
         <!-- ===== À propos ===== -->
         <section id="a-propos" class="section">
             <div class="container">
+                <p class="tag">À propos</p>
                 <h2>Qui sommes-nous ?</h2>
+                <p class="section-intro">
+                    Horizon est une association créée par et pour les étudiants. Notre équipe
+                    de bénévoles organise tout au long de l'année des événements ouverts à tous,
+                    quelle que soit la filière.
+                </p>
+
+                <div class="cards">
+                    <article class="card">
+                        <div class="card-icon">🎉</div>
+                        <h3>Rencontrer</h3>
+                        <p>Des soirées et afterworks pour créer des liens entre promotions et entre écoles.</p>
+                    </article>
+                    <article class="card">
+                        <div class="card-icon">💡</div>
+                        <h3>Apprendre</h3>
+                        <p>Des ateliers et conférences animés par des étudiants et des professionnels.</p>
+                    </article>
+                    <article class="card">
+                        <div class="card-icon">🏆</div>
+                        <h3>Se dépasser</h3>
+                        <p>Des tournois sportifs et e-sport pour défendre les couleurs de votre école.</p>
+                    </article>
+                </div>
+
+                <div class="stats">
+                    <div class="stat">
+                        <strong>250+</strong>
+                        <span>membres</span>
+                    </div>
+                    <div class="stat">
+                        <strong>30</strong>
+                        <span>événements par an</span>
+                    </div>
+                    <div class="stat">
+                        <strong>12</strong>
+                        <span>bénévoles</span>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- ===== Événements (Fonctionnalité B - étudiant 2) ===== -->
-        <section id="evenements" class="section">
+        <section id="evenements" class="section section-alt">
             <div class="container">
+                <p class="tag">Agenda</p>
                 <h2>Événements à venir</h2>
                 <!-- Le catalogue d'événements sera ajouté ici -->
             </div>
@@ -43,6 +105,7 @@
         <!-- ===== Inscription (Fonctionnalité C - étudiant 3) ===== -->
         <section id="inscription" class="section">
             <div class="container">
+                <p class="tag">Inscription</p>
                 <h2>Inscrivez-vous à un événement</h2>
                 <p class="inscription-intro">
                     Renseignez vos coordonnées pour vous inscrire.
@@ -103,8 +166,13 @@
     <!-- ===== Pied de page ===== -->
     <footer class="footer">
         <div class="container">
-            <p>© 2026 Horizon — Association étudiante</p>
+            <a href="#accueil" class="logo">
+                <span class="logo-icon">H</span>
+                <span class="logo-text">Horizon</span>
+            </a>
+            <p>L'association étudiante qui fait bouger le campus.</p>
         </div>
+        <p class="footer-copy">© 2026 Horizon — Association étudiante</p>
     </footer>
 
     <script src="inscription.js"></script>
