@@ -306,7 +306,10 @@ a {
 /* ===== Mobile ===== */
 @media (max-width: 700px) {
     html {
-        scroll-padding-top: 120px;
+        /* Doit rester supérieur à la hauteur de l'en-tête collant (161 px à 320 px de large,
+           menu sur plusieurs lignes), sinon le haut de la section ciblée par un lien du menu
+           est masqué (incident #35). */
+        scroll-padding-top: 170px;
     }
 
     .header-inner {
