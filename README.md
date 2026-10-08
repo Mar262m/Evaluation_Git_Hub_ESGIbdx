@@ -97,19 +97,23 @@ Ce comportement est vérifié dans le [rapport de tests](docs/testsInscription.m
 | Fichier | Rôle |
 |---------|------|
 | [`index.html`](index.html) | Structure du formulaire dans la section `#inscription` |
-| [`inscription.css`](inscription.css) | Style du formulaire, affichage responsive |
+| [`inscription.css`](inscription.css) | Style du formulaire : couleurs et boutons repris de l'identité visuelle du site (variables de `style.css`), affichage responsive |
 | [`inscription.js`](inscription.js) | Validation et soumission simulée |
 | [`docs/testsInscription.md`](docs/testsInscription.md) | Scénarios de test et résultats |
+| [`docs/images/`](docs/images) | Captures d'écran de la page complète |
+
+Le formulaire se trouve en bas de la page, après le catalogue : chaque bouton « S'inscrire » du catalogue y mène.
+Les trois événements de la liste déroulante sont ceux du catalogue (fonctionnalité B) et doivent rester identiques.
 
 ### Captures d'écran
 
-Affichage sur ordinateur :
+Page complète sur ordinateur (le formulaire est dans la section « Inscription », en bas) :
 
-![Formulaire d'inscription sur ordinateur](docs/images/inscriptionDesktop.png)
+![Page complète sur ordinateur, avec le formulaire d'inscription en bas](docs/images/inscriptionDesktop.png)
 
-Affichage sur mobile :
+Page complète sur mobile (largeur 500 px) :
 
-![Formulaire d'inscription sur mobile](docs/images/inscriptionMobile.png)
+![Page complète sur mobile, avec le formulaire d'inscription en bas](docs/images/inscriptionMobile.png)
 
 ## Questions de synthèse
 

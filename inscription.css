@@ -26,8 +26,9 @@
     display: block;
     width: 100%;
     padding: 12px;
+    /* gris plus foncé que --couleur-bordure : contraste suffisant pour un champ de saisie */
     border: 1px solid #767676;
-    border-radius: 6px;
+    border-radius: 10px;
     background: #fff;
     /* 16px minimum : évite le zoom automatique sur iOS lors du focus */
     font: inherit;
@@ -36,7 +37,7 @@
 
 .form-group input:focus-visible,
 .form-group select:focus-visible {
-    outline: 3px solid #1a73e8;
+    outline: 3px solid var(--couleur-principale);
     outline-offset: 1px;
 }
 
@@ -71,24 +72,27 @@
 }
 
 /* ===== Bouton ===== */
+/* Mêmes couleurs et même forme que les boutons .btn-primary du site */
 .form-submit {
     width: 100%;
-    padding: 14px 24px;
+    padding: 14px 28px;
     border: 0;
-    border-radius: 6px;
-    background: #1a73e8;
+    border-radius: 999px;
+    background: var(--couleur-principale);
     color: #fff;
     font: inherit;
     font-weight: 600;
+    box-shadow: var(--ombre);
     cursor: pointer;
+    transition: background 0.2s;
 }
 
 .form-submit:hover {
-    background: #1558b0;
+    background: var(--couleur-principale-fonce);
 }
 
 .form-submit:focus-visible {
-    outline: 3px solid #1a73e8;
+    outline: 3px solid var(--couleur-principale);
     outline-offset: 2px;
 }
 
