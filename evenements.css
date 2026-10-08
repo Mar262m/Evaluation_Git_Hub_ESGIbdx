@@ -1,0 +1,58 @@
+/* ===== Catalogue des événements (Fonctionnalité B) =====
+   Fichier dédié à la section #evenements : il complète style.css
+   et réutilise ses variables de couleurs et ses classes .btn. */
+
+.evenements-liste {
+    display: grid;
+    /* min() : une carte ne dépasse jamais la largeur disponible sur petit écran */
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+    gap: 24px;
+}
+
+.evenement {
+    display: flex;
+    flex-direction: column;
+    padding: 28px;
+    border: 1px solid var(--couleur-bordure);
+    border-radius: var(--rayon);
+    background: #fff;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.evenement:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--ombre);
+}
+
+.evenement h3 {
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+}
+
+.evenement-infos {
+    list-style: none;
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+}
+
+.evenement-infos li + li {
+    margin-top: 4px;
+}
+
+.evenement-description {
+    flex-grow: 1;
+    margin-bottom: 24px;
+    color: var(--couleur-texte-doux);
+}
+
+/* Le bouton reste aligné en bas de chaque carte */
+.evenement .btn {
+    align-self: flex-start;
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 700px) {
+    .evenement {
+        padding: 20px;
+    }
+}

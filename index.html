@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horizon — Association étudiante</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="inscription.css">
+    <link rel="stylesheet" href="evenements.css">
+</head>
+<body>
+
+    <!-- ===== En-tête et navigation ===== -->
+    <header class="header">
+        <div class="container header-inner">
+            <a href="#accueil" class="logo">
+                <span class="logo-icon">H</span>
+                <span class="logo-text">Horizon</span>
+            </a>
+
+            <nav class="nav">
+                <a href="#accueil">Accueil</a>
+                <a href="#a-propos">À propos</a>
+                <a href="#evenements">Événements</a>
+                <a href="#inscription" class="nav-cta">Inscription</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ===== Accueil ===== -->
+        <section id="accueil" class="hero">
+            <div class="container hero-inner">
+                <p class="tag">Association étudiante</p>
+                <h1>Vivez votre vie étudiante <span>autrement</span>.</h1>
+                <p class="hero-text">
+                    Soirées, sorties, tournois et ateliers : Horizon rassemble les étudiants
+                    autour d'événements pensés pour se rencontrer, apprendre et partager.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#evenements" class="btn btn-primary">Voir les événements</a>
+                    <a href="#a-propos" class="btn btn-secondary">Découvrir l'asso</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== À propos ===== -->
+        <section id="a-propos" class="section">
+            <div class="container">
+                <p class="tag">À propos</p>
+                <h2>Qui sommes-nous ?</h2>
+                <p class="section-intro">
+                    Horizon est une association créée par et pour les étudiants. Notre équipe
+                    de bénévoles organise tout au long de l'année des événements ouverts à tous,
+                    quelle que soit la filière.
+                </p>
+
+                <div class="cards">
+                    <article class="card">
+                        <div class="card-icon">🎉</div>
+                        <h3>Rencontrer</h3>
+                        <p>Des soirées et afterworks pour créer des liens entre promotions et entre écoles.</p>
+                    </article>
+                    <article class="card">
+                        <div class="card-icon">💡</div>
+                        <h3>Apprendre</h3>
+                        <p>Des ateliers et conférences animés par des étudiants et des professionnels.</p>
+                    </article>
+                    <article class="card">
+                        <div class="card-icon">🏆</div>
+                        <h3>Se dépasser</h3>
+                        <p>Des tournois sportifs et e-sport pour défendre les couleurs de votre école.</p>
+                    </article>
+                </div>
+
+                <div class="stats">
+                    <div class="stat">
+                        <strong>250+</strong>
+                        <span>membres</span>
+                    </div>
+                    <div class="stat">
+                        <strong>30</strong>
+                        <span>événements par an</span>
+                    </div>
+                    <div class="stat">
+                        <strong>12</strong>
+                        <span>bénévoles</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Événements (Fonctionnalité B - étudiant 2) ===== -->
+        <section id="evenements" class="section section-alt">
+            <div class="container">
+                <p class="tag">Agenda</p>
+                <h2>Événements à venir</h2>
+                <p class="section-intro">
+                    Découvrez les prochains rendez-vous de l'association et inscrivez-vous
+                    à ceux qui vous intéressent.
+                </p>
+
+                <!-- Les titres sont repris dans la liste déroulante du formulaire
+                     d'inscription (Fonctionnalité C) : à garder alignés. -->
+                <div class="evenements-liste">
+                    <article class="evenement">
+                        <h3>Atelier d'initiation au code</h3>
+                        <ul class="evenement-infos">
+                            <li><strong>Date :</strong> <time datetime="2026-11-14T14:00">Samedi 14 novembre 2026, 14 h – 17 h</time></li>
+                            <li><strong>Lieu :</strong> Salle B12, campus ESGI Bordeaux</li>
+                        </ul>
+                        <p class="evenement-description">Une après-midi pour découvrir les bases du HTML et du CSS en créant sa première page web. Ouvert aux débutants, ordinateur fourni.</p>
+                        <a href="#inscription" class="btn btn-primary" aria-label="S'inscrire à : Atelier d'initiation au code">S'inscrire</a>
+                    </article>
+
+                    <article class="evenement">
+                        <h3>Soirée jeux de société</h3>
+                        <ul class="evenement-infos">
+                            <li><strong>Date :</strong> <time datetime="2026-11-28T19:00">Samedi 28 novembre 2026, 19 h – 23 h</time></li>
+                            <li><strong>Lieu :</strong> Foyer étudiant, campus ESGI Bordeaux</li>
+                        </ul>
+                        <p class="evenement-description">Une soirée conviviale autour d'une cinquantaine de jeux de plateau pour rencontrer les membres de l'association et des autres promotions.</p>
+                        <a href="#inscription" class="btn btn-primary" aria-label="S'inscrire à : Soirée jeux de société">S'inscrire</a>
+                    </article>
+
+                    <article class="evenement">
+                        <h3>Conférence sur le numérique responsable</h3>
+                        <ul class="evenement-infos">
+                            <li><strong>Date :</strong> <time datetime="2026-12-12T18:30">Samedi 12 décembre 2026, 18 h 30 – 20 h</time></li>
+                            <li><strong>Lieu :</strong> Amphithéâtre A, campus ESGI Bordeaux</li>
+                        </ul>
+                        <p class="evenement-description">Des intervenants présentent l'impact environnemental du numérique et les bonnes pratiques à adopter, suivi d'un temps d'échange avec le public.</p>
+                        <a href="#inscription" class="btn btn-primary" aria-label="S'inscrire à : Conférence sur le numérique responsable">S'inscrire</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Inscription (Fonctionnalité C - étudiant 3) ===== -->
+        <section id="inscription" class="section">
+            <div class="container">
+                <p class="tag">Inscription</p>
+                <h2>Inscrivez-vous à un événement</h2>
+                <p class="inscription-intro">
+                    Renseignez vos coordonnées pour vous inscrire.
+                    Les champs marqués d'une étoile (*) sont obligatoires.
+                </p>
+
+                <!-- novalidate : la validation est faite par inscription.js
+                     afin d'afficher nos propres messages d'erreur. -->
+                <form id="inscription-form" class="inscription-form" novalidate>
+
+                    <div class="form-group">
+                        <label for="nom">Nom *</label>
+                        <input type="text" id="nom" name="nom" autocomplete="family-name"
+                               required aria-describedby="nom-error">
+                        <p class="form-error" id="nom-error"></p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prenom">Prénom *</label>
+                        <input type="text" id="prenom" name="prenom" autocomplete="given-name"
+                               required aria-describedby="prenom-error">
+                        <p class="form-error" id="prenom-error"></p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Adresse email *</label>
+                        <input type="email" id="email" name="email" autocomplete="email"
+                               required aria-describedby="email-error">
+                        <p class="form-error" id="email-error"></p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="evenement">Événement *</label>
+                        <!-- Un seul événement sélectionnable. L'option vide par défaut
+                             représente « aucun événement choisi » (champ obligatoire).
+                             Les intitulés sont ceux du catalogue d'événements
+                             (Fonctionnalité B) : à garder alignés avec lui. -->
+                        <select id="evenement" name="evenement" required aria-describedby="evenement-error">
+                            <option value="" selected>— Choisissez un événement —</option>
+                            <option value="atelier-initiation-code">Atelier d'initiation au code</option>
+                            <option value="soiree-jeux-societe">Soirée jeux de société</option>
+                            <option value="conference-numerique-responsable">Conférence sur le numérique responsable</option>
+                        </select>
+                        <p class="form-error" id="evenement-error"></p>
+                    </div>
+
+                    <button type="submit" class="form-submit">S'inscrire</button>
+
+                </form>
+
+                <!-- Confirmation simulée, remplie par inscription.js après une soumission valide. -->
+                <p id="inscription-confirmation" class="form-confirmation" role="status" tabindex="-1" hidden></p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== Pied de page ===== -->
+    <footer class="footer">
+        <div class="container">
+            <a href="#accueil" class="logo">
+                <span class="logo-icon">H</span>
+                <span class="logo-text">Horizon</span>
+            </a>
+            <p>L'association étudiante qui fait bouger le campus.</p>
+        </div>
+        <p class="footer-copy">© 2026 Horizon — Association étudiante</p>
+    </footer>
+
+    <script src="inscription.js"></script>
+</body>
+</html>
