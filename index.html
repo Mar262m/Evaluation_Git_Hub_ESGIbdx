@@ -66,6 +66,20 @@
                         <input type="email" id="email" name="email" autocomplete="email" required>
                     </div>
 
+                    <div class="form-group">
+                        <label for="evenement">Événement *</label>
+                        <!-- Un seul événement sélectionnable. L'option vide par défaut
+                             représente « aucun événement choisi » (champ obligatoire).
+                             Les intitulés sont ceux du catalogue d'événements
+                             (Fonctionnalité B) : à garder alignés avec lui. -->
+                        <select id="evenement" name="evenement" required>
+                            <option value="" selected>— Choisissez un événement —</option>
+                            <option value="atelier-initiation-code">Atelier d'initiation au code</option>
+                            <option value="soiree-jeux-societe">Soirée jeux de société</option>
+                            <option value="conference-numerique-responsable">Conférence sur le numérique responsable</option>
+                        </select>
+                    </div>
+
                     <button type="submit" class="form-submit">S'inscrire</button>
 
                 </form>
