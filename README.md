@@ -13,6 +13,8 @@ Site web de l'association étudiante **Horizon**, réalisé en HTML, CSS et Java
 | @Mar262m | Machado | Marius | Étudiant 2 |
 | @TomLeDev | Vinsonneau | Tom | Étudiant 3 |
 
+Les auteurs des commits et des fusions apparaissent dans `git log` sous le **nom d'affichage** de leur compte GitHub, qui n'est pas toujours le pseudonyme : `@Mar262m` apparaît comme « TheMysteriousCat », `@TomLeDev` comme « FreezMod » pour les fusions faites sur GitHub, et `@ISeevenI` sous son pseudonyme. Les commits restent rattachés aux comptes GitHub par leur adresse e-mail.
+
 ## Fonctionnalités et responsabilités
 
 | Fonctionnalité | Responsable | Contenu | Pull Requests |
@@ -59,7 +61,8 @@ Les questions de synthèse sont réparties ainsi : questions 1 à 3 par @ISeeven
 10. Documentation : README (PR #27) et harmonisation de la partie C avec le design du site (PR #33).
 11. Release v1.0 : branche `release/v1.0` depuis `develop`, vérifications, PR #34 vers `main`, tag `v1.0`.
 12. Incident après la mise en production (Issue #35) : branche `hotfix/lienEvenements` depuis le tag `v1.0`, PR #36 vers `main`, tag `v1.0.1`, puis PR #37 pour reporter la correction dans `develop`.
-13. Release documentaire v1.0.2 : cette version finale du README, intégrée par `release/v1.0.2`.
+13. Release documentaire v1.0.2 : README final, intégré par `release/v1.0.2` (PR #38 vers `main`, PR #39 vers `develop`).
+14. Audit de l'énoncé et release documentaire v1.0.3 : correction de la liste des Pull Requests fusionnées avec moins de deux approbations, correspondance entre pseudonymes et noms d'affichage Git, et limites reconnues (répartition des tâches, Roadmap).
 
 ## Conflit Git et résolution
 
@@ -94,7 +97,8 @@ La règle mobile de B (qui ajuste le remplissage dans la media query) a été fu
 |---------|------|---------|--------|
 | `v1.0` | 8 octobre 2026 | première version stable : fonctionnalités A, B et C, améliorations du menu, correction des cartes d'événements, documentation | branche `release/v1.0`, PR #34, tag annoté sur `c3671b4` |
 | `v1.0.1` | 8 octobre 2026 | hotfix : le haut de la section ciblée par un lien du menu était masqué sous l'en-tête sur mobile (`scroll-padding-top` 120 px pour un en-tête de 161 px, mesuré à 320 px) | Issue #35, branche `hotfix/lienEvenements`, PR #36 (vers `main`) et #37 (vers `develop`), tag annoté sur `7043ad1` |
-| `v1.0.2` | 8 octobre 2026 | documentation uniquement : README final et journal des versions | branche `release/v1.0.2` |
+| `v1.0.2` | 8 octobre 2026 | documentation uniquement : README final et journal des versions | branche `release/v1.0.2`, PR #38 (vers `main`) et #39 (vers `develop`), tag annoté sur `79af10e` |
+| `v1.0.3` | 8 octobre 2026 | documentation uniquement : corrections du README issues de l'audit de l'énoncé | branche `release/v1.0.3`, tag annoté après la fusion dans `main` |
 
 Pour vérifier une livraison : `git tag -n` liste les versions, `git log --oneline v1.0..v1.0.1` montre ce que le hotfix a ajouté, et `git diff --stat v1.0 v1.0.1` prouve qu'aucun développement de `develop` n'y est entré (seuls `style.css` et `CHANGELOG.md` changent).
 
@@ -103,9 +107,11 @@ Pour vérifier une livraison : `git tag -n` liste les versions, `git log --oneli
 - **Mauvaise branche cible** : la première Pull Request de la navigation visait `main` au lieu de `develop`. La revue l'a repérée et elle a été redirigée vers `develop`.
 - **Force-push après approbation** : réécrire la branche d'une PR déjà approuvée a annulé l'approbation, il a fallu relire.
 - **Branche partie de l'« Initial commit »** : la première version du catalogue réécrivait `index.html` et entrait en conflit avec `develop`. La PR #14 a été fermée, puis le travail a été repris à partir de `develop` dans la PR #18.
-- **Protection de `develop` tardive** : elle n'a été ajoutée qu'après les premières fusions. Les PR #13 et #18 ont donc été fusionnées sans leurs deux approbations (celle de #18 a été ajoutée après coup).
+- **Protection de `develop` tardive** : elle n'a été ajoutée qu'après les premières fusions. Quatre Pull Requests ont donc été fusionnées dans `develop` avec moins de deux approbations d'autres membres : #13 (aucune approbation valide, l'approbation initiale avait été annulée par un force-push), #15 (une approbation), #18 (aucune au moment de la fusion, approuvée après coup) et #20 (une approbation). Depuis la protection, GitHub exige les deux approbations avant toute fusion vers `develop` comme vers `main`.
 - **Issues non fermées automatiquement** : voir la limite connue ci-dessus. Certains titres d'Issues ont aussi un numéro qui ne correspond pas à celui de GitHub.
 - **Un incident à simuler sur une version qui fonctionne** : le lien « Événements » de la v1.0 n'était pas réellement cassé. Plutôt que de livrer un bug exprès, l'incident a été déclaré comme simulé (Issue #35) et appuyé sur un défaut réel, mesuré à 320 px : le haut de la section ciblée par le menu restait masqué de 41 px sous l'en-tête.
+- **Répartition inégale des tâches transverses** : l'énoncé demande de répartir équitablement la maintenance, la résolution du conflit et la livraison. En pratique, la résolution du conflit, la release et le hotfix ont été faits par @TomLeDev, la maintenance corrective par @Mar262m, et @ISeevenI a porté l'amélioration A, ouvert l'Issue #32 de la release et relu les Pull Requests. Le tableau « Travaux transverses » ci-dessus indique qui a fait quoi.
+- **Roadmap peu datée** : la vue Roadmap du GitHub Project liste les éléments dans l'ordre prévu, mais seuls quelques éléments ont une date de début ou de fin renseignée, et les dépendances entre tâches ne sont pas modélisées. Les liens entre Issues et Pull Requests (`Closes #n`) en tiennent lieu.
 - **Corriger `main` après la v1.0.1** : `main` n'accepte que des releases et des hotfix. Pour que son README soit à jour, le README final passe par une release documentaire (`release/v1.0.2`) plutôt que par un commit direct.
 
 ## Fonctionnalité C — Inscription à un événement
