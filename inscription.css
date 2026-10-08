@@ -40,6 +40,24 @@
     outline-offset: 1px;
 }
 
+/* ===== Messages d'erreur ===== */
+.form-error {
+    margin-top: 6px;
+    color: #b3261e;
+    font-size: 0.9rem;
+}
+
+/* Le paragraphe vide ne prend pas de place tant qu'il n'y a pas d'erreur */
+.form-error:empty {
+    display: none;
+}
+
+.form-group input[aria-invalid="true"],
+.form-group select[aria-invalid="true"] {
+    border-color: #b3261e;
+    border-width: 2px;
+}
+
 /* ===== Bouton ===== */
 .form-submit {
     width: 100%;

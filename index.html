@@ -49,21 +49,29 @@
                     Les champs marqués d'une étoile (*) sont obligatoires.
                 </p>
 
+                <!-- novalidate : la validation est faite par inscription.js
+                     afin d'afficher nos propres messages d'erreur. -->
                 <form id="inscription-form" class="inscription-form" novalidate>
 
                     <div class="form-group">
                         <label for="nom">Nom *</label>
-                        <input type="text" id="nom" name="nom" autocomplete="family-name" required>
+                        <input type="text" id="nom" name="nom" autocomplete="family-name"
+                               required aria-describedby="nom-error">
+                        <p class="form-error" id="nom-error"></p>
                     </div>
 
                     <div class="form-group">
                         <label for="prenom">Prénom *</label>
-                        <input type="text" id="prenom" name="prenom" autocomplete="given-name" required>
+                        <input type="text" id="prenom" name="prenom" autocomplete="given-name"
+                               required aria-describedby="prenom-error">
+                        <p class="form-error" id="prenom-error"></p>
                     </div>
 
                     <div class="form-group">
                         <label for="email">Adresse email *</label>
-                        <input type="email" id="email" name="email" autocomplete="email" required>
+                        <input type="email" id="email" name="email" autocomplete="email"
+                               required aria-describedby="email-error">
+                        <p class="form-error" id="email-error"></p>
                     </div>
 
                     <div class="form-group">
@@ -72,12 +80,13 @@
                              représente « aucun événement choisi » (champ obligatoire).
                              Les intitulés sont ceux du catalogue d'événements
                              (Fonctionnalité B) : à garder alignés avec lui. -->
-                        <select id="evenement" name="evenement" required>
+                        <select id="evenement" name="evenement" required aria-describedby="evenement-error">
                             <option value="" selected>— Choisissez un événement —</option>
                             <option value="atelier-initiation-code">Atelier d'initiation au code</option>
                             <option value="soiree-jeux-societe">Soirée jeux de société</option>
                             <option value="conference-numerique-responsable">Conférence sur le numérique responsable</option>
                         </select>
+                        <p class="form-error" id="evenement-error"></p>
                     </div>
 
                     <button type="submit" class="form-submit">S'inscrire</button>
@@ -95,5 +104,6 @@
         </div>
     </footer>
 
+    <script src="inscription.js"></script>
 </body>
 </html>
