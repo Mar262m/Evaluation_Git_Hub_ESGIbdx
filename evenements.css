@@ -4,7 +4,8 @@
 
 .evenements-liste {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* min() : une carte ne dépasse jamais la largeur disponible sur petit écran */
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: 24px;
 }
 
@@ -47,4 +48,11 @@
 /* Le bouton reste aligné en bas de chaque carte */
 .evenement .btn {
     align-self: flex-start;
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 700px) {
+    .evenement {
+        padding: 20px;
+    }
 }
