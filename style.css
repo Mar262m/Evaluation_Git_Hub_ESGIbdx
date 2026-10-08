@@ -88,10 +88,13 @@ a {
 }
 
 .nav a {
-    padding: 8px 14px;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px; /* zone cliquable confortable au doigt */
+    padding: 10px 16px;
     border-radius: 999px;
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: clamp(0.9rem, 2.5vw, 0.95rem);
     color: var(--couleur-texte-doux);
     transition: color 0.2s, background 0.2s;
 }
@@ -319,8 +322,7 @@ a {
     }
 
     .nav a {
-        padding: 6px 12px;
-        font-size: 0.9rem;
+        padding: 8px 12px;
     }
 
     .hero {
