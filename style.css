@@ -88,12 +88,17 @@ a {
 }
 
 .nav a {
-    padding: 8px 14px;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px; /* zone cliquable confortable au doigt */
+    padding: 10px 16px;
     border-radius: 999px;
+    /* Amélioration A : graisse, espacement et couleur du texte */
     font-weight: 600;
-    font-size: 1rem;
     letter-spacing: 0.01em;
     color: var(--couleur-texte);
+    /* Amélioration B : taille adaptative, plafonnée à la taille 1rem voulue par A */
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
     transition: color 0.2s, background 0.2s;
 }
 
@@ -320,8 +325,7 @@ a {
     }
 
     .nav a {
-        padding: 6px 12px;
-        font-size: 0.9rem;
+        padding: 8px 12px;
     }
 
     .hero {
