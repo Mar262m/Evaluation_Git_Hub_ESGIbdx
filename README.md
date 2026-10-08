@@ -19,9 +19,21 @@ Site web de l'association étudiante **Horizon**, réalisé en HTML, CSS et Java
 |----------------|-------------|---------|---------------|
 | A — Présentation et navigation | @ISeevenI (Étudiant 1) | identité visuelle (couleurs, police, logo), présentation de l'association, menu de navigation | #13, #17 |
 | B — Catalogue d'événements | @Mar262m (Étudiant 2) | trois événements avec titre, date, lieu, description et bouton d'inscription | #18 |
-| C — Inscription | @TomLeDev (Étudiant 3) | formulaire (coordonnées et choix d'un événement), validation, confirmation simulée | #15 |
+| C — Inscription | @TomLeDev (Étudiant 3) | formulaire (coordonnées et choix d'un événement), validation, confirmation simulée, harmonisation avec le design du site | #15, #33 |
 
 Les questions de synthèse sont réparties ainsi : questions 1 à 3 par @ISeevenI, 4 à 6 par @Mar262m, 7 et 8 par @TomLeDev (PR #20 et #22).
+
+### Travaux transverses
+
+| Travail | Réalisé par | Traces |
+|---------|-------------|--------|
+| Amélioration A : identité visuelle du menu | @ISeevenI | Issue #23, PR #24 |
+| Amélioration B : adaptation mobile du menu | @Mar262m | Issue #28, PR #30 |
+| Résolution du conflit entre A et B | @TomLeDev | commit `9942189`, PR #30 |
+| Maintenance corrective : cartes d'événements sur mobile | @Mar262m | Issue #29, PR #31 |
+| Release v1.0 : branche, Pull Request, tag | @TomLeDev | Issue #32, PR #34, tag `v1.0` |
+| Incident et hotfix v1.0.1 (responsable différent de celui de la maintenance corrective) | @TomLeDev | Issue #35, PR #36 et #37, tag `v1.0.1` |
+| Revues, approbations et fusions des Pull Requests | les trois membres | historique des Pull Requests |
 
 ## Choix de workflow
 
@@ -29,7 +41,9 @@ Les questions de synthèse sont réparties ainsi : questions 1 à 3 par @ISeeven
 - **Protection des branches** : un ruleset GitHub (`Anti_push`) s'applique à `main` et à `develop` : Pull Request obligatoire, **2 approbations**, suppression et force-push interdits.
 - **Revue de code** : toute intégration passe par une Pull Request relue par les autres membres.
 - **Traçabilité** : chaque Issue a un responsable et des critères de réalisation, les messages de commit citent l'Issue (`(#3)`), les Pull Requests contiennent `Closes #n`, et le GitHub Project (vues Kanban et Roadmap) suit l'avancement.
-- **Limite connue** : les Pull Requests visent `develop`, qui n'est pas la branche par défaut. GitHub ne ferme donc pas les Issues tout seul à la fusion : elles sont fermées à la main ou citées dans la PR de release vers `main`.
+- **Release** : une branche `release/*` part de `develop`, on y fait les vérifications sans ajouter de fonctionnalité, puis une Pull Request vers `main` (2 approbations) et un tag annoté. Chaque version est décrite dans [`CHANGELOG.md`](CHANGELOG.md).
+- **Hotfix** : une branche `hotfix/*` part du tag de la version en production, passe par une Pull Request vers `main` et reçoit un nouveau tag, puis une seconde Pull Request reporte la correction dans `develop` pour les versions futures.
+- **Limite connue** : les Pull Requests visent `develop`, qui n'est pas la branche par défaut. GitHub ne ferme donc pas les Issues tout seul à la fusion : elles sont fermées à la main, ou par une Pull Request vers `main` qui les cite avec `Closes`.
 
 ## Étapes du développement
 
@@ -40,20 +54,49 @@ Les questions de synthèse sont réparties ainsi : questions 1 à 3 par @ISeeven
 5. Catalogue des événements (PR #18, Issues #7 et #11).
 6. Questions de synthèse du README (PR #20 et #22).
 7. Protection de `develop` : 2 approbations obligatoires, comme sur `main`.
-8. À venir : améliorations parallèles et résolution du conflit, correction des cartes d'événements sur mobile, release v1.0, puis hotfix v1.0.1. Les sections ci-dessous seront complétées au fur et à mesure.
+8. Améliorations parallèles du menu : A (identité visuelle, Issue #23, PR #24) et B (adaptation mobile, Issue #28, PR #30). Elles modifient volontairement le même bloc de `style.css` et provoquent un vrai conflit, résolu en gardant les deux (voir ci-dessous).
+9. Maintenance corrective sur la version en développement : les cartes d'événements débordaient sur mobile (Issue #29, branche `bugfix/cartesEvenementsMobile`, PR #31).
+10. Documentation : README (PR #27) et harmonisation de la partie C avec le design du site (PR #33).
+11. Release v1.0 : branche `release/v1.0` depuis `develop`, vérifications, PR #34 vers `main`, tag `v1.0`.
+12. Incident après la mise en production (Issue #35) : branche `hotfix/lienEvenements` depuis le tag `v1.0`, PR #36 vers `main`, tag `v1.0.1`, puis PR #37 pour reporter la correction dans `develop`.
+13. Release documentaire v1.0.2 : cette version finale du README, intégrée par `release/v1.0.2`.
 
 ## Conflit Git et résolution
 
-*À compléter après le conflit volontaire entre l'amélioration A (identité visuelle) et l'amélioration B (adaptation mobile) : origine du conflit, fichiers concernés et choix de résolution.*
+**Origine.** Les améliorations A et B partent toutes deux de `develop` et modifient le même bloc `.nav a` de `style.css` : A (@ISeevenI, branche `feature/identiteVisuelle`, PR #24) change la graisse, l'espacement et la couleur des liens ; B (@Mar262m, branche `feature/adaptationMobile`, PR #30) change la zone cliquable, le remplissage et la taille du texte. A est fusionnée en premier (commit `3242eee`). La PR #30 entre alors en conflit sur les mêmes lignes.
+
+**Résolution** (@TomLeDev, qui coordonne l'intégration). `develop` est fusionné dans la branche de B (`git merge origin/develop`), Git signale le conflit dans `style.css`, qui contenait :
+
+```css
+<<<<<<< HEAD                          /* amélioration B */
+    font-weight: 500;
+    font-size: clamp(0.9rem, 2.5vw, 0.95rem);
+    color: var(--couleur-texte-doux);
+=======                               /* amélioration A */
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.01em;
+    color: var(--couleur-texte);
+>>>>>>> origin/develop
+```
+
+Les deux améliorations sont conservées :
+
+- **de A** : `font-weight: 600`, `letter-spacing: 0.01em` et `color: var(--couleur-texte)`, pour des liens plus lisibles ;
+- **de B** : `display: inline-flex`, `min-height: 44px` et le remplissage, pour une zone cliquable confortable au doigt ;
+- **taille du texte**, où les deux choix s'opposaient : `font-size: clamp(0.9rem, 2.5vw, 1rem)`, c'est-à-dire la taille adaptative de B, plafonnée à la taille de 1 rem voulue par A sur ordinateur.
+
+La règle mobile de B (qui ajuste le remplissage dans la media query) a été fusionnée automatiquement. La résolution est dans le commit `9942189` (« Résout le conflit entre les améliorations A et B sur le bloc .nav a (#28) »), puis la PR #30 a reçu ses 2 approbations et a été fusionnée.
 
 ## Versions publiées
 
-Aucune version n'est publiée pour l'instant.
+| Version | Date | Contenu | Traces |
+|---------|------|---------|--------|
+| `v1.0` | 8 octobre 2026 | première version stable : fonctionnalités A, B et C, améliorations du menu, correction des cartes d'événements, documentation | branche `release/v1.0`, PR #34, tag annoté sur `c3671b4` |
+| `v1.0.1` | 8 octobre 2026 | hotfix : le haut de la section ciblée par un lien du menu était masqué sous l'en-tête sur mobile (`scroll-padding-top` 120 px pour un en-tête de 161 px, mesuré à 320 px) | Issue #35, branche `hotfix/lienEvenements`, PR #36 (vers `main`) et #37 (vers `develop`), tag annoté sur `7043ad1` |
+| `v1.0.2` | 8 octobre 2026 | documentation uniquement : README final et journal des versions | branche `release/v1.0.2` |
 
-| Version | Contenu | Statut |
-|---------|---------|--------|
-| v1.0 | première version stable, depuis une branche `release/*` | à publier |
-| v1.0.1 | correction du lien de navigation vers les événements (hotfix depuis `main`) | à publier |
+Pour vérifier une livraison : `git tag -n` liste les versions, `git log --oneline v1.0..v1.0.1` montre ce que le hotfix a ajouté, et `git diff --stat v1.0 v1.0.1` prouve qu'aucun développement de `develop` n'y est entré (seuls `style.css` et `CHANGELOG.md` changent).
 
 ## Difficultés rencontrées
 
@@ -62,6 +105,8 @@ Aucune version n'est publiée pour l'instant.
 - **Branche partie de l'« Initial commit »** : la première version du catalogue réécrivait `index.html` et entrait en conflit avec `develop`. La PR #14 a été fermée, puis le travail a été repris à partir de `develop` dans la PR #18.
 - **Protection de `develop` tardive** : elle n'a été ajoutée qu'après les premières fusions. Les PR #13 et #18 ont donc été fusionnées sans leurs deux approbations (celle de #18 a été ajoutée après coup).
 - **Issues non fermées automatiquement** : voir la limite connue ci-dessus. Certains titres d'Issues ont aussi un numéro qui ne correspond pas à celui de GitHub.
+- **Un incident à simuler sur une version qui fonctionne** : le lien « Événements » de la v1.0 n'était pas réellement cassé. Plutôt que de livrer un bug exprès, l'incident a été déclaré comme simulé (Issue #35) et appuyé sur un défaut réel, mesuré à 320 px : le haut de la section ciblée par le menu restait masqué de 41 px sous l'en-tête.
+- **Corriger `main` après la v1.0.1** : `main` n'accepte que des releases et des hotfix. Pour que son README soit à jour, le README final passe par une release documentaire (`release/v1.0.2`) plutôt que par un commit direct.
 
 ## Fonctionnalité C — Inscription à un événement
 

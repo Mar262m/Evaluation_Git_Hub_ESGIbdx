@@ -3,6 +3,23 @@
 Toutes les versions publiées du site Horizon. Le format suit la logique de Git Flow : chaque version est
 préparée dans une branche `release/*`, intégrée dans `main` par Pull Request, puis identifiée par un tag.
 
+## v1.0.2 — 8 octobre 2026
+
+Release documentaire préparée dans `release/v1.0.2` depuis `develop`, qui contient déjà le hotfix v1.0.1.
+**Aucun changement de code** : seuls `README.md` et ce journal sont modifiés.
+
+### Modifié
+
+- `README.md` en version finale : travaux transverses et responsabilités, workflow (release et hotfix), étapes du
+  développement, conflit entre les améliorations A et B et sa résolution, versions publiées, difficultés rencontrées.
+  Le README de `main` indiquait encore qu'aucune version n'était publiée.
+
+### Traçabilité
+
+- Issue : #25
+- Branche : `release/v1.0.2`, créée depuis `develop`
+- Pull Request vers `main`, puis tag `v1.0.2`, puis Pull Request vers `develop`.
+
 ## v1.0.1 — 8 octobre 2026
 
 Correctif de production (hotfix) créé depuis `main` au niveau du tag `v1.0`, sans aucun développement de `develop`.
